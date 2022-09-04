@@ -9,15 +9,15 @@ import android.view.View
 import kotlin.random.Random
 
 class MyView : View {
-    var rect = Rect(10, 10, 110, 110)
-    var circleX = 100F
-    var circleY = 100F
-    var circleR = 50F
+    private var rect = Rect(10, 10, 110, 110)
+    private var circleX = 100F
+    private var circleY = 100F
+    private var circleR = 50F
 
-    var triangleX = 100F
-    var triangleY = 100F
-    var triangleW = 100F
-    var color = Color.BLUE
+    private var triangleX = 100F
+    private var triangleY = 100F
+    private var triangleW = 100F
+    private var color = Color.BLUE
     private var paint = Paint()
 
     constructor(context: Context) : super(context)
