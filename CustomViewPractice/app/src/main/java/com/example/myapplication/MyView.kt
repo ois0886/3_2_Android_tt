@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
@@ -22,13 +23,12 @@ class MyView : View {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         paint.color = color
 
-        var random = Random.nextInt(3) + 1  //난수생성
-
-        when (random) {
+        when (Random.nextInt(3) + 1) {  //난수생성
             1 -> {  //1일경우 사각형
                 canvas.drawRect(rect, paint)
             }
@@ -36,8 +36,8 @@ class MyView : View {
                 canvas.drawCircle(circleX, circleY, circleR, paint)
             }
             3 -> {   //3일경우 삼각형
-                var hw = triangleW / 2
-                var path = Path()
+                val hw = triangleW / 2
+                val path = Path()
                 path.moveTo(triangleX, triangleY - hw)
                 path.lineTo(triangleX - hw, triangleY + hw)
                 path.lineTo(triangleX + hw, triangleY + hw)
@@ -48,6 +48,7 @@ class MyView : View {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         if (event.action == MotionEvent.ACTION_DOWN ||
