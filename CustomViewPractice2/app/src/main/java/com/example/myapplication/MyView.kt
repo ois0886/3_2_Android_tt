@@ -24,7 +24,11 @@ class MyView : View {
         super.onDraw(canvas)
 
         paint.color = color
-        canvas.drawCircle(circleX, circleY, circleR, paint)
+
+        when(checkedNum){
+            0,1-> canvas.drawCircle(circleX, circleY, circleR, paint)
+            2 -> canvas.drawRect(rect, paint)
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
