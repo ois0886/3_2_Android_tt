@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="rectangle">Rectangle</string>
+    <string name="circle">Circle</string>
 </resources>

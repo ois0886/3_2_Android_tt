@@ -6,7 +6,6 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import kotlin.random.Random
 
 class MyView : View {
     private var rect = Rect(10, 10, 110, 110)
@@ -23,21 +22,13 @@ class MyView : View {
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        paint.color = color
 
-        when (Random.nextInt(3) + 1) {  //난수생성
-            1 -> {  //1일경우 사각형
-                canvas.drawRect(rect, paint)
-            }
-            2 -> {   //2일경후 원
-                canvas.drawCircle(circleX, circleY, circleR, paint)
-            }
-        }
+        paint.color = color
+        canvas.drawCircle(circleX, circleY, circleR, paint)
     }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
-
         if (event.action == MotionEvent.ACTION_DOWN ||
             event.action == MotionEvent.ACTION_MOVE
         ) {
@@ -51,7 +42,6 @@ class MyView : View {
 
             invalidate()
 
-            return true
         }
         return super.onTouchEvent(event)
     }
