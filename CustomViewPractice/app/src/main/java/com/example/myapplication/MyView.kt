@@ -10,13 +10,10 @@ import kotlin.random.Random
 
 class MyView : View {
     private var rect = Rect(10, 10, 110, 110)
-    private var circleX = 100F
-    private var circleY = 100F
+    private var circleXY = 100F
     private var circleR = 50F
 
-    private var triangleX = 100F
-    private var triangleY = 100F
-    private var triangleW = 100F
+    private var triangleXYW = 100F
     private var color = Color.BLUE
     private var paint = Paint()
 
@@ -33,15 +30,15 @@ class MyView : View {
                 canvas.drawRect(rect, paint)
             }
             2 -> {   //2일경후 원
-                canvas.drawCircle(circleX, circleY, circleR, paint)
+                canvas.drawCircle(this.circleXY, this.circleXY, circleR, paint)
             }
             3 -> {   //3일경우 삼각형
-                val hw = triangleW / 2
+                val hw = this.triangleXYW / 2
                 val path = Path()
-                path.moveTo(triangleX, triangleY - hw)
-                path.lineTo(triangleX - hw, triangleY + hw)
-                path.lineTo(triangleX + hw, triangleY + hw)
-                path.lineTo(triangleX, triangleY - hw)
+                path.moveTo(triangleXYW, triangleXYW - hw)
+                path.lineTo(triangleXYW - hw, triangleXYW + hw)
+                path.lineTo(triangleXYW + hw, triangleXYW + hw)
+                path.lineTo(triangleXYW, triangleXYW - hw)
                 path.close()
                 canvas.drawPath(path, paint)
             }
@@ -59,11 +56,11 @@ class MyView : View {
             rect.right = rect.left + 100
             rect.bottom = rect.top + 100
 
-            circleX = event.x
-            circleY = event.y
+            this.circleXY = event.x
+            this.circleXY = event.y
 
-            triangleX = event.x
-            triangleY = event.y
+            triangleXYW = event.x
+            triangleXYW = event.y
 
             invalidate()
 
