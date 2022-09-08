@@ -9,14 +9,21 @@ import android.view.View
 
 class MyView : View {
     private var rect = Rect(10, 10, 110, 110)
-    private var circleXY = 100F
+    private var circleX = 100F
+    private var circleY = 100F
     private var circleR = 50F
 
     private var color = Color.BLUE
-    private var paint = Paint()
+    private val paint = Paint()
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+
+    private var newFigure: String = "rect"
+
+    fun setFigure(figure: String) {
+        newFigure = figure
+    }
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
@@ -24,9 +31,9 @@ class MyView : View {
 
         paint.color = color
 
-        when(checkedNum){
-            0,1-> canvas.drawCircle(circleXY, circleXY, circleR, paint)
-            2 -> canvas.drawRect(rect, paint)
+        when (newFigure) {
+            "circle" -> canvas.drawCircle(circleX, circleY, circleR, paint)
+            "rect" -> canvas.drawRect(rect, paint)
         }
     }
 
@@ -40,11 +47,11 @@ class MyView : View {
             rect.right = rect.left + 100
             rect.bottom = rect.top + 100
 
-            circleXY = event.x
-            circleXY = event.y
+            circleX = event.x
+            circleY = event.y
 
             invalidate()
-
+            return true
         }
         return super.onTouchEvent(event)
     }

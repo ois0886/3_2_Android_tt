@@ -1,20 +1,21 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.databinding.ActivityMainBinding
 
-var checkedNum = 0
 class MainActivity() : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val radioGroup: RadioGroup = findViewById(R.id.radioGp)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+        binding.radioGp.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.radio_Circle -> checkedNum = 1
-                R.id.radio_Rectangle -> checkedNum = 2
+                R.id.radio_Circle -> binding.view.setFigure("circle")
+                R.id.radio_Rectangle -> binding.view.setFigure("rect")
             }
         }
     }
