@@ -25,7 +25,6 @@ class MyView : View {
         newFigure = figure
     }
 
-    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
