@@ -23,21 +23,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var check = 1
 
         val button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            showNotification()
+            showNotification(check)
+            check += 1
         }
         requestSinglePermission(Manifest.permission.POST_NOTIFICATIONS)
 
         createNotificationChannel()
     }
 
-    private fun showNotification() {
+    private fun showNotification(check : Int) {
         val builder = NotificationCompat.Builder(this, channelID)
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle("Notification Title")
-            .setContentText("Notification body")
+            .setContentTitle("Notification Lab")
+            .setContentText("""Notification #$check""",)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
         NotificationManagerCompat.from(this)
             .notify(1, builder.build())
