@@ -1,4 +1,4 @@
-package com.example.notificationpractice
+package com.example.notificationpratice2
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -7,13 +7,12 @@ import android.content.Context
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.notificationpractice.databinding.ActivityMainBinding
+import com.example.notificationpratice2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,26 +25,44 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var check = 1
 
-        val button = findViewById<Button>(R.id.button)
-        button.setOnClickListener {
-            showNotification(check)
+        Manifest.permission.POST_NOTIFICATIONS.requestSinglePermission()
+
+        var check = 1
+        val channel = 1
+
+        binding.buttonShowNotification.setOnClickListener {
+            val message = binding.editTextTextPersonName.text.toString()
+            showNotification(channel, check, message)
             check += 1
         }
-        Manifest.permission.POST_NOTIFICATIONS.requestSinglePermission()
+
+        binding.buttonNotify.setOnClickListener {
+            val message = binding.editTextTextPersonName.text.toString()
+            showNotification(channel + 1, check, message)
+        }
 
         createNotificationChannel()
     }
 
-    private fun showNotification(check: Int) {
-        val builder = NotificationCompat.Builder(this, channelID)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle("Notification Lab")
-            .setContentText("""Notification #$check""")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-        NotificationManagerCompat.from(this)
-            .notify(1, builder.build())
+    private fun showNotification(channel: Int, check: Int, message: String) {
+        if (channel == 1) {
+            val builder = NotificationCompat.Builder(this, channelID)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Notification Lab$channel")
+                .setContentText("""Notification #$check""")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            NotificationManagerCompat.from(this)
+                .notify(channel, builder.build())
+        } else {
+            val builder = NotificationCompat.Builder(this, channelID)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Notification Lab$channel")
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            NotificationManagerCompat.from(this)
+                .notify(channel, builder.build())
+        }
     }
 
     private fun createNotificationChannel() {
@@ -86,4 +103,5 @@ class MainActivity : AppCompatActivity() {
             requestPermLauncher.launch(this)
         }
     }
+
 }
