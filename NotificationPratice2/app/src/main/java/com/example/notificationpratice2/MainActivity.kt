@@ -16,7 +16,7 @@ import com.example.notificationpratice2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     private val channelID = "default"
     private val myChannelID = "ad"
