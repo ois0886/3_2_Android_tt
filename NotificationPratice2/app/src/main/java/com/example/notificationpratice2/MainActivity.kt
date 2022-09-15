@@ -36,14 +36,14 @@ class MainActivity : AppCompatActivity() {
             val message = binding.editTextTextPersonName.text.toString()
             showNotification(channel, check, message)
             check += 1
-            createNotificationChannel(channelID)
         }
 
         binding.buttonNotify.setOnClickListener {
             val message = binding.editTextTextPersonName.text.toString()
             showNotification(channel + 1, check, message)
-            createNotificationChannel(myChannelID)
         }
+
+        createNotificationChannel()
     }
 
     private fun showNotification(channel: Int, check: Int, message: String) {
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             NotificationManagerCompat.from(this)
                 .notify(channel, builder.build())
         } else {
-            val builder = NotificationCompat.Builder(this, channelID)
+            val builder = NotificationCompat.Builder(this, myChannelID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("Notification Lab$channel")
                 .setContentText(message)
@@ -66,15 +66,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun createNotificationChannel(channelName: String) {
+    private fun createNotificationChannel() {
         val channel = NotificationChannel(
-            channelID, "$channelName channel",
+            channelID, "default channel",
+            NotificationManager.IMPORTANCE_DEFAULT
+        )
+        val channel2 = NotificationChannel(
+            myChannelID, "ad channel",
             NotificationManager.IMPORTANCE_DEFAULT
         )
         channel.description = "description text of this channel."
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
+        notificationManager.createNotificationChannel(channel2)
     }
 
     private fun String.requestSinglePermission() {
