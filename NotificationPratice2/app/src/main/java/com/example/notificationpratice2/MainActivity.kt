@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     private val channelID = "default"
+    private val myChannelID = "ad"
 
     @RequiresApi(33)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,14 +36,14 @@ class MainActivity : AppCompatActivity() {
             val message = binding.editTextTextPersonName.text.toString()
             showNotification(channel, check, message)
             check += 1
+            createNotificationChannel(channelID)
         }
 
         binding.buttonNotify.setOnClickListener {
             val message = binding.editTextTextPersonName.text.toString()
             showNotification(channel + 1, check, message)
+            createNotificationChannel(myChannelID)
         }
-
-        createNotificationChannel()
     }
 
     private fun showNotification(channel: Int, check: Int, message: String) {
@@ -65,9 +66,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun createNotificationChannel() {
+    private fun createNotificationChannel(channelName: String) {
         val channel = NotificationChannel(
-            channelID, "default channel",
+            channelID, "$channelName channel",
             NotificationManager.IMPORTANCE_DEFAULT
         )
         channel.description = "description text of this channel."
