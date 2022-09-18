@@ -1,19 +1,15 @@
 package com.example.animationpractice
 
-import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.animationpractice.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("Recycle")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    lateinit var binding: ActivityMainBinding
 
-        ValueAnimator.ofFloat(0F, 100F).apply {
-            addUpdateListener { println(it.animatedValue) }
-            start()
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
     }
 }
