@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AnimationPractice2</string>
+    <string name="name">Name</string>
+    <string name="student">Student</string>
+    <string name="worker">Worker</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="coffee">Coffee</string>
 </resources>
