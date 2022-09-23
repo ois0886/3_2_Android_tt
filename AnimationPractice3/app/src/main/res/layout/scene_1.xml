@@ -5,19 +5,19 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/editTextTextPersonName1"
+        android:id="@+id/scene1_editText1"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/name" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/scene1_editText2"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textMultiLine" />
 
     <RadioGroup
         android:layout_width="match_parent"
