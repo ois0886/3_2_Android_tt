@@ -57,9 +57,17 @@
         android:id="@+id/delete_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Delete Student"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:text="Delete Student" />
+        app:layout_constraintTop_toBottomOf="@+id/add_student" />
+
+    <Button
+        android:id="@+id/enrollment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enrollment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delete_student" />
 
     <TextView
         android:id="@+id/textView"
@@ -81,9 +89,8 @@
 
     <TextView
         android:id="@+id/text_query_student"
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:layout_height="100sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 

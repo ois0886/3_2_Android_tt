@@ -80,5 +80,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.deleteStudent.setOnClickListener {
+            val id = binding
+        }
+
     }
 }
