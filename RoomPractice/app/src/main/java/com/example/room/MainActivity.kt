@@ -31,13 +31,13 @@ class MainActivity : AppCompatActivity() {
         val allStudents = myDao.getAllStudents()
         allStudents.observe(this) {
             val str = StringBuilder().apply {
-                    for ((id, name) in it) {
-                        append(id)
-                        append("-")
-                        append(name)
-                        append("\n")
-                    }
-                }.toString()
+                for ((id, name) in it) {
+                    append(id)
+                    append("-")
+                    append(name)
+                    append("\n")
+                }
+            }.toString()
             binding.textStudentList.text = str
         }
 
@@ -81,7 +81,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.deleteStudent.setOnClickListener {
-            val id = binding
+            val id = binding.editStudentId.text.toString().toInt()
+            if (id > 0) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    myDao.deleteStudent(Student(id, ""))
+                }
+            }
         }
 
     }
