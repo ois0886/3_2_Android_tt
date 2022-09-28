@@ -9,13 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3056901-fe03-43c1-86e8-6cddfcad59f9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/room/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/room/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RoomPractice2/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RoomPractice2/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RoomPractice2/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../RoomPractice2/app/build.gradle" afterDir="false" />
-    </list>
+    <list default="true" id="e3056901-fe03-43c1-86e8-6cddfcad59f9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
