@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">internetPractice</string>
+    <string name="query">QUERY</string>
+    <string name="username">User Name</string>
+</resources>
