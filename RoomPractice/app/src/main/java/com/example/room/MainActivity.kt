@@ -88,5 +88,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.enrollment.setOnClickListener {
+            val id = binding.editStudentId.text.toString().toInt()
+            if (id > 0) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    myDao.insertEnrollment(Enrollment(id, 1))
+                }
+            }
+        }
     }
 }

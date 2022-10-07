@@ -1,15 +1,16 @@
 package com.example.room
 
 import androidx.room.*
+import androidx.room.ForeignKey.CASCADE
 
-@Entity(tableName = "student_table")    // 테이블 이름을 student_table로 지정함
-data class Student (
+@Entity(tableName = "student_table")
+data class Student(
     @PrimaryKey @ColumnInfo(name = "student_id") val id: Int,
     val name: String
 )
 
 @Entity(tableName = "class_table")
-data class ClassInfo (
+data class ClassInfo(
     @PrimaryKey val id: Int,
     val name: String,
     val day_time: String,
@@ -17,22 +18,28 @@ data class ClassInfo (
     val teacher_id: Int
 )
 
-@Entity(tableName = "enrollment",
+@Entity(
+    tableName = "enrollment",
     primaryKeys = ["sid", "cid"],
     foreignKeys = [
-        ForeignKey(entity = Student::class, parentColumns = ["student_id"], childColumns = ["sid"]),
+        ForeignKey(
+            entity = Student::class,
+            parentColumns = ["student_id"],
+            childColumns = ["sid"],
+            onDelete = CASCADE
+        ),
         ForeignKey(entity = ClassInfo::class, parentColumns = ["id"], childColumns = ["cid"])
     ],
-    indices = [Index(value=["sid", "cid"])]
+    indices = [Index(value = ["sid", "cid"])]
 )
-data class Enrollment (
+data class Enrollment(
     val sid: Int,
     val cid: Int,
     val grade: String? = null
 )
 
 @Entity(tableName = "teacher_table")
-data class Teacher (
+data class Teacher(
     @PrimaryKey val id: Int,
     val name: String,
     val position: String

@@ -31,10 +31,6 @@ abstract class MyDatabase : RoomDatabase() {
                     context, MyDatabase::class.java, "school_database")
                     .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build()
-                // for in-memory database
-                /*INSTANCE = Room.inMemoryDatabaseBuilder(
-                    context, MyDatabase::class.java
-                ).build()*/
             }
             return INSTANCE as MyDatabase
         }
