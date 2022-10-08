@@ -23,7 +23,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/username"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="44dp" />
 
