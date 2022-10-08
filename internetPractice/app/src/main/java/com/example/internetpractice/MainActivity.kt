@@ -15,12 +15,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         myViewModel = ViewModelProvider(this)[ViewModel::class.java]
-        myViewModel.response.observe(this) {
-            binding.textView.text = it
+
+        binding.button.setOnClickListener {
             val userName = binding.editTextTextPersonName.text.toString()
-            binding.button.setOnClickListener {
-                myViewModel.retrofitInit()
-                myViewModel.refreshData(userName)
+            myViewModel.retrofitInit()
+            myViewModel.refreshData(userName)
+            myViewModel.response.observe(this) {
+                binding.textView.text = it
             }
         }
     }
