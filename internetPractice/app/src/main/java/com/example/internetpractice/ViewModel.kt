@@ -15,14 +15,15 @@ class ViewModel : ViewModel() {
     val response = MutableLiveData<String>()
 
     init {
+        val userName = ""
         retrofitInit()
-        refreshData()
+        refreshData(userName)
     }
 
-    fun refreshData() {
+    fun refreshData(userName: String) {
         viewModelScope.launch {
             try {
-                val repos = api.listRepos("ois0886")
+                val repos = api.listRepos(userName)
                 response.value = StringBuilder().apply {
                     repos.forEach {
                         append(it.name)
@@ -37,13 +38,11 @@ class ViewModel : ViewModel() {
         }
     }
 
-    private fun retrofitInit() {
+    fun retrofitInit() {
         val retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
             .addConverterFactory(MoshiConverterFactory.create())
-
             .build()
-
         api = retrofit.create(RestApi::class.java)
     }
 }
