@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener {
             val userName = binding.editTextTextPersonName.text.toString()
-            myViewModel.retrofitInit()
             myViewModel.refreshData(userName)
             myViewModel.response.observe(this) {
                 binding.textView.text = it
