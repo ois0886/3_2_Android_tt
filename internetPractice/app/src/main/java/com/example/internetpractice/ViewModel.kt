@@ -1,5 +1,6 @@
 package com.example.internetpractice
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,6 +14,7 @@ class ViewModel : ViewModel() {
     private lateinit var api: RestApi
 
     val response = MutableLiveData<String>()
+    val mutableData: MutableMap<String, String> = mutableMapOf()
 
     init {
         val userName = ""
@@ -30,6 +32,7 @@ class ViewModel : ViewModel() {
                         append(" - ")
                         append(it.owner.login)
                         append("\n")
+                        mutableData[it.name] = it.owner.login
                     }
                 }.toString()
             } catch (e: Exception) {
@@ -38,7 +41,7 @@ class ViewModel : ViewModel() {
         }
     }
 
-    fun retrofitInit() {
+    private fun retrofitInit() {
         val retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
             .addConverterFactory(MoshiConverterFactory.create())
