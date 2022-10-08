@@ -2,7 +2,6 @@ package com.example.internetpractice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.internetpractice.databinding.ActivityMainBinding
 
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         myViewModel = ViewModelProvider(this).get(ViewModel::class.java)
         myViewModel.response.observe(this) {
-            findViewById<TextView>(R.id.textView).text = it
+            binding.textView.text = it
         }
     }
 }
