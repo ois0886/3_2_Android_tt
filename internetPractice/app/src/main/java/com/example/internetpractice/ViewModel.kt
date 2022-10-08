@@ -38,7 +38,7 @@ class ViewModel : ViewModel() {
         }
     }
 
-    fun retrofitInit() {
+    private fun retrofitInit() {
         val retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
             .addConverterFactory(MoshiConverterFactory.create())
