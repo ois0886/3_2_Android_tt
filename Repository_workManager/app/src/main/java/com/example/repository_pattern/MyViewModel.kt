@@ -20,13 +20,12 @@ class MyViewModel(context: Context) : ViewModel() {
     fun refreshData() {
         viewModelScope.launch {
             try {
-                repository.refreshData()
+                repository.refreshData("ois0886")
             } catch (e: Exception) {
-                Log.e("Network","Failed to connect to the server!")
+                Log.e("Network", "Failed to connect to the server!")
             }
         }
     }
-
 
     class Factory(val context: Context) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -37,5 +36,4 @@ class MyViewModel(context: Context) : ViewModel() {
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
-
 }

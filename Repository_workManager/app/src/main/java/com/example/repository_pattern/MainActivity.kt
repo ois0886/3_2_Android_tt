@@ -6,23 +6,24 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.*
+import com.example.repository_pattern.databinding.ActivityMainBinding
 import java.lang.StringBuilder
 import java.util.concurrent.TimeUnit
 
-// The repository pattern is a strategy for abstracting data access.
-// ViewModel delegates the data-fetching process to the repository.
-
 class MainActivity : AppCompatActivity() {
-    private lateinit var myViewModel : MyViewModel
+    private lateinit var myViewModel: MyViewModel
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        findViewById<Button>(R.id.startWorker).setOnClickListener { startWorker() }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        val userName = binding.editTextTextPersonName.text.toString()
+        findViewById<Button>(R.id.startWorker).setOnClickListener { startWorker(userName) }
         findViewById<Button>(R.id.stopWorker).setOnClickListener { stopWorker() }
 
-        myViewModel = ViewModelProvider(this, MyViewModel.Factory(this)).get(MyViewModel::class.java)
+        myViewModel =
+            ViewModelProvider(this, MyViewModel.Factory(this))[MyViewModel::class.java]
 
         myViewModel.repos.observe(this) { repos ->
             val response = StringBuilder().apply {
@@ -50,32 +51,26 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun startWorker() {
-        //val oneTimeRequest = OneTimeWorkRequest.Builder<MyWorker>()
-        //        .build()
+    private fun startWorker(userName: String) {
 
         val constraints = Constraints.Builder().apply {
             setRequiredNetworkType(NetworkType.UNMETERED) // un-metered network such as WiFi
             setRequiresBatteryNotLow(true)
-            //setRequiresCharging(true)
-            // setRequiresDeviceIdle(true) // android 6.0(M) or higher
         }.build()
 
-        //val repeatingRequest = PeriodicWorkRequestBuilder<MyWorker>(1, TimeUnit.DAYS)
         val repeatingRequest = PeriodicWorkRequestBuilder<MyWorker>(15, TimeUnit.MINUTES)
             .setConstraints(constraints)
+            .setInputData(workDataOf("username" to userName))
             .build()
 
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             MyWorker.name,
             ExistingPeriodicWorkPolicy.KEEP,
-            repeatingRequest)
-
-
+            repeatingRequest
+        )
     }
 
     private fun stopWorker() {
-        // to stop the MyWorker
         WorkManager.getInstance(this).cancelUniqueWork(MyWorker.name)
     }
 }

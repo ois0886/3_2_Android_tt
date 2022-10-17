@@ -11,10 +11,9 @@ class MyRepository(context: Context) {
 
     val repos = myDao.getAll() // LiveData<List<ReposD>>
 
-    suspend fun refreshData() {
+    suspend fun refreshData(userName: String) {
         withContext(Dispatchers.IO) {
-            val repos = api.listRepos("jyheo")
-            // convert Repo to RepoD
+            val repos = api.listRepos(userName)
             val repoDs = repos.map {
                 RepoD(it.name, it.owner.login)
             }
