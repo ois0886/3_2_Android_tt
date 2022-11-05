@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonSignout.setOnClickListener {
             Firebase.auth.signOut()
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+            )
             finish()
         }
     }
