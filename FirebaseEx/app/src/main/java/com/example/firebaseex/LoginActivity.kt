@@ -21,6 +21,12 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.password.text.toString()
             doLogin(userEmail, password)
         }
+
+        binding.signup.setOnClickListener {
+            val userEmail = binding.username.text.toString()
+            val password = binding.password.text.toString()
+            createUser(userEmail, password)
+        }
     }
 
     private fun doLogin(userEmail: String, password: String) {
@@ -28,8 +34,22 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
                     startActivity(
-                        Intent(this, MainActivity::class.java))
-                    finish()
+                        Intent(this, MainActivity::class.java)
+                    )
+                } else {
+                    Log.w("LoginActivity", "signInWithEmail", it.exception)
+                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun createUser(userEmail: String, password: String) {
+        Firebase.auth.createUserWithEmailAndPassword(userEmail, password)
+            .addOnCompleteListener(this) {
+                if (it.isSuccessful) {
+                    startActivity(
+                        Intent(this, MainActivity::class.java)
+                    )
                 } else {
                     Log.w("LoginActivity", "signInWithEmail", it.exception)
                     Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
