@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.firebaseex">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,8 +16,16 @@
         android:theme="@style/Theme.FirebaseEx"
         tools:targetApi="31">
         <activity
+            android:name=".RemoteConfigActivity"
+            android:label="Firebase Remote Config"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".StorageActivity"
+            android:label="Firebase Storage"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
