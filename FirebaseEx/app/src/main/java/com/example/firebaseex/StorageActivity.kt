@@ -2,7 +2,6 @@ package com.example.firebaseex
 
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.ContentUris
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -21,8 +20,8 @@ import com.google.firebase.storage.ktx.storage
 
 
 class StorageActivity : AppCompatActivity() {
-    lateinit var storage: FirebaseStorage
-    lateinit var binding: ActivityStorageBinding
+    private lateinit var storage: FirebaseStorage
+    private lateinit var binding: ActivityStorageBinding
 
     companion object {
         const val REQUEST_CODE = 1
@@ -38,9 +37,9 @@ class StorageActivity : AppCompatActivity() {
 
         storage = Firebase.storage
         val storageRef = storage.reference // reference to root
-        val imageRef1 = storageRef.child("images/computer_sangsangbugi.jpg")
+        val imageRef1 = storageRef.child("여름의+골목+계단.jpg")
         val imageRef2 = storage.getReferenceFromUrl(
-            "gs://android-kotlin-lecture.appspot.com/images/computer_sangsangbugi.jpg"
+            "gs://fir-2022-2-91fa3.appspot.com/한국+문화유산(제주+새별오름+갈대).JPG"
         )
         // imageRef1 and imageRef2 indicate same object.
         displayImageRef(imageRef1, binding.imageView)
@@ -55,7 +54,6 @@ class StorageActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("NewApi")
     private fun uploadDialog() {
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
             == PackageManager.PERMISSION_GRANTED) {
