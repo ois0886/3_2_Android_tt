@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
 
         if (Firebase.auth.currentUser == null) {
             startActivity(
-                Intent(this, LoginActivity::class.java))
+                Intent(this, LoginActivity::class.java)
+            )
             finish()
         }
 
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
@@ -39,9 +41,14 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.storage -> startActivity(
-                Intent(this, StorageActivity::class.java))
+                Intent(this, StorageActivity::class.java)
+            )
             R.id.remote_config -> startActivity(
-                Intent(this, RemoteConfigActivity::class.java))
+                Intent(this, RemoteConfigActivity::class.java)
+            )
+            R.id.practice -> startActivity(
+                Intent(this, PracActivity::class.java)
+            )
         }
         return super.onOptionsItemSelected(item)
     }

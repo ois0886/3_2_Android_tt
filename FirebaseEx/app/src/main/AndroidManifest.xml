@@ -16,6 +16,9 @@
         android:theme="@style/Theme.FirebaseEx"
         tools:targetApi="31">
         <activity
+            android:name=".PracActivity"
+            android:exported="false" />
+        <activity
             android:name=".RemoteConfigActivity"
             android:label="Firebase Remote Config"
             android:parentActivityName=".MainActivity" />
